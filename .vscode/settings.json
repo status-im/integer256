@@ -1,0 +1,11 @@
+// Place your settings in this file to overwrite default and user settings.
+{
+  "editor.tabSize": 2,
+  "indentRainbow.includedLanguages": [
+    "nim"
+  ],
+  "files.autoSave": "afterDelay",
+  "workbench.editor.enablePreview": false,
+  "nim.buildOnSave": false,
+  "editor.formatOnPaste": true  
+}

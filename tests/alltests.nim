@@ -1,0 +1,44 @@
+import ../integer256
+
+import unittest
+suite "Int256":
+  test "String input":
+    var x = i256"123456"
+    check $x == "0x0000000000000000000000000000000000000000000000000000000000123456"
+  test "Numeric input":
+    var x = i256(0x123456)
+    check $x == "0x0000000000000000000000000000000000000000000000000000000000123456"
+  test "Addition":
+    var
+      x = i256"123456"
+      y = i256"123456"
+      a = i256("13AC19ED413CCE5D402129")
+      b = i256("667C9CFA7440B879181A96")
+      c = i256("0AD99F7AF99413AC19293950ED413CCE5D402129")
+      d = i256("0F0A884AA482759927667C9CFA7440B879181A96")
+    check $(x + y) == "0x00000000000000000000000000000000000000000000000000000000002468AC"
+    check $(a + b) == "0x0000000000000000000000000000000000000000007A28B6E7B57D86D6583BBF"
+    check $(c + d) == "0x00000000000000000000000019E427C59E168945408FB5EDE7B57D86D6583BBF"
+  test "Subtraction":
+    var
+      x = i256"123456"
+      y = i256"123456"
+      z = i256"0456"
+    check $(x - y) == "0x0000000000000000000000000000000000000000000000000000000000000000"
+    check $(x - z) == "0x0000000000000000000000000000000000000000000000000000000000123000"
+
+  test "Inversion":
+    var x = i256"abcdef"
+    check $(-x) ==    "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF543211"
+    check $(x.not) == "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF543210"
+  test "Equality":
+    var
+      x = i256"abcdef"
+      y = i256"abcdef"
+    check x == y
+  test "Comparison":
+    var
+      x = i256"abcd"
+      y = i256"ab"
+    check x > y == true
+    check x < y == false
